@@ -2,7 +2,7 @@
 
 	return_type function_name(parameter_list) left_curly_brace
 
-		function body -> block
+		function body -> block scope
 
 	right_curly_brace
 
