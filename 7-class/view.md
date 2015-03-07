@@ -18,25 +18,26 @@
 
 成员函数通过this指针来访问调用它的对象.当我们调用成员函数时,用请求该函数的对象地址初始化this.
 
-this总是指向某个对象,所以是常量指针,不允许修改this中的地址.
+### const + this
+默认情况下,this的类型是指向**非常量版本类类型**的**常量指针**.
 
-## const对象
+在const成员函数中,this是**指向常量的常量指针**,所以此时无法通过this指针来修改类成员,因此我们就不能调用普通成员函数.
 
-常量对象,以及其引用或指针只能调用常量函数.
+## 类作用域和成员函数
+
+编译器分两步来处理类:首先编译成员的声明,(此时类成员可见)然后是定义在类内部的成员函数体
 
 ## 构造函数
 
 构造函数不能声明为const的.当我们创建一个const对象时,直到构造函数完成初始化,对象才获得"常量"属性.
 
-1 default constructor -> synthesized default constructor(编译器合成)
-> see main.cpp for more information
+1 default constructor(无参) 
 
-2 constructor initialize list(构造函数初始值列表)
+2 synthesized default constructor(编译器合成)
+> 如果存在**类内初始值**,用它初始化
+> 否则,默认初始化(与类型及位置有关)该成员,如果定义在块中的内置类型或复合类型对象被默认初始化,值未定义.
+
+3 constructor initialize list(构造函数初始值列表)
 > 当某个数据成员被列表忽略时,将以合成的默认构造函数方式隐式初始化(类内初始值或默认初始化)
-
-
-
-
-
 
 

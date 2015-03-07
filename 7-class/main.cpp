@@ -5,12 +5,14 @@ using namespace std;
 
 class Base{
 	public:
-		Base() = default;
-	private:
-		unsigned int counts = 0;//类内初始值
+		Base() = default;//C++11,默认内联
+		Base(double c):counts(c){}
+
+		double counts = 0.0;
 };
 
 int main(){
 	Base b;
+	cout<<b.counts<<endl;
 	return 0;
 }
