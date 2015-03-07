@@ -92,6 +92,9 @@
 > Bar* mem; OK
 > Bar mem; NO
 
+可以用静态成员做默认实参
+> void clear(char = bkground);
+
 ### 函数
 
 静态成员函数无this指针,因此:
