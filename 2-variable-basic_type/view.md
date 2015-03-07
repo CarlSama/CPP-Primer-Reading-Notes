@@ -97,10 +97,27 @@ C++是静态类型(staticlly typed)语言,代表其在**编译阶段**检查类�
 > int * const 为 常量指针(const pointer)
 
 * 顶层const(top-level const)表示对象本身是常量;底层const(low-level const)则与指针和引用等复合类型的基本类型部分有关.
+> 类型转换和用作函数参数时,顶层const会被忽略.
+> 类型转换时,普通指针->const;但是,const->普通有限制.
+> const_cast只能改变对象的底层const(能将对象做出区分的底层const...)
 
-* 常量表达式(const expression)是指不会改变并且在编译中能得到计算结果的表达式.复杂系统中,很难分辨一个初始值是不是常量表达式.在C++11中,允许将变量生命为constexpr,由编译器决定是否为常量表达式.
+* const成员函数可以修改mutable对象的值
+> 存在基于const的函数重载:this指针的类型不同
+
+
+#### constexpr
+
+常量表达式(const expression)是指不会改变并且在编译中能得到计算结果的表达式.复杂系统中,很难分辨一个初始值是不是常量表达式.在C++11中,允许将变量生命为constexpr,由编译器决定是否为常量表达式.
 > constexpr int sz = size(); //只有size是constexpr函数时才正确
-> constexpr 将对象置为顶层const.(考虑和指针合用的情况)
+
+声明constexpr时用到的类型必须为字面值类型(literal type): 算数类型,引用和指针.
+> 指针的初始值必须为0或者内存中固定(函数体外部或这内部static)
+> constexpr 仅能对对指针对象本身有效.
+								
+
+constexpr函数是指能用于常量表达式的函数.
+> 要遵循约定: 函数的返回类型及所有形参类型都时literal类型, 且只有一条return语句.
+> 可以包含其他语句,只要不进行任何操作 :(
 
 ### 类型别名(type alias)
 
