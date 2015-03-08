@@ -34,12 +34,34 @@
 
 * 显示类型转换
 
+static_cast<type-id>(expression)
 
-|类型|说明|示例|
-|:---------:|:--------------------------------------------------------:|:--------------------------------------------:|
-|static_cast|任何具有明确定义的类型转换,只要不包含底层const,都可以使用|float f = static_cast<float>(double);//关闭警告|
-||告诉编译器我们不在意精度损失| double * p = static_cast<double *>(void *)//找回void*|
-|const_cast| 只能改变**底层const**?,不安全||
-|| 不能通过它来修改指针的类型||							 
-|reinterpret_cast|在位模式重新解释||
-|dynamic_cast||| 
+没有运行时检查来保证转换的安全性
+
+1. 基类指针转换为派生类指针
+
+2. built-in type之间的转换
+> 告诉编译器我们不在意精度损失,关闭警告
+
+3. 找回void指针或设置为void指针
+> double * p = static_cast<double *>(void *)
+
+dynamic_cast<type-id>(expression)
+
+要求:type-id必须是指针,引用或者void*
+
+1. 进行基类指针与派生类指针之间的转换(不同层)
+> 进行类型检查,比static_cast更安全
+> 需要有虚函数(由于运行时检查需要运行时类型信息,这个信息存储在虚函数表中)
+
+2. 同层之间的转换
+> static_cast不允许
+> dynamic_cast结果为0
+
+reinpreter_cast<type-id>(expression)
+
+type-id必须是一个指针,引用,算数类型,函数指针或者成员指针.它可以在指针和整数之间转换,
+
+const_cast<type-id>(expression)
+
+去除const和volatile属性
