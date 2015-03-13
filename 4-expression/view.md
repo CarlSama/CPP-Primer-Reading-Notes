@@ -63,5 +63,4 @@ reinpreter_cast<type-id>(expression)
 type-id必须是一个指针,引用,算数类型,函数指针或者成员指针.它可以在指针和整数之间转换,
 
 const_cast<type-id>(expression)
-
 去除const和volatile属性

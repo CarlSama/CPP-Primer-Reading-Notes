@@ -100,3 +100,14 @@
 静态成员函数无this指针,因此:
 > 不能声明为const.
 > 不能在其中使用this指针.
+
+## 访问控制
+
+类内:
+	protected -> 子类\类内函数\frined类访问
+
+继承:
+	private属性不能被继承
+	private继承 -> protected和public在子类中变为private
+	public继承  -> protected和public在子类中保持
+	protected继承->protected和public在子类中变为protected
